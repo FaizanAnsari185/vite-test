@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoIosMenu } from "react-icons/io";
-import { IoMdClose } from "react-icons/io";
+import { IoGameControllerOutline } from "react-icons/io5";
+import SideBar from "./Components/SideBar";
 
 const App = () => {
   const [sidebar, SetSideBar] = useState(false);
@@ -45,29 +46,20 @@ const App = () => {
   return (
     <>
       <div className="bg-[#1B1833] h-full w-full p-4 text-[#ECEBDE] relative">
-        <div onClick={() => SetSideBar(!sidebar)} className="h-7 w-7 ">
-          <IoIosMenu className="h-full w-full" />
-        </div>
-        <div
-          className={`${
-            !sidebar && "-translate-x-full"
-          } transition transform ease-in-out duration-500 h-screen w-screen absolute z-10 top-0 left-0 bottom-0 p-4 bg-[#1B1833]`}
-        >
-          <div
-            onClick={() => SetSideBar(!sidebar)}
-            className="h-8 w-8 absolute right-3 top-3"
-          >
-            <IoMdClose className="h-full w-full" />
+        <div className="flex justify-between">
+          <IoGameControllerOutline className="h-7 w-7" />
+          <div onClick={() => SetSideBar(!sidebar)} className="h-7 w-7">
+            <IoIosMenu className="h-full w-full" />
           </div>
-          <h1 className="text-3xl my-28">Nothing to see here</h1>
         </div>
+        <SideBar sidebar={sidebar} SetSideBar={SetSideBar} />
         <div className="text-center mt-12">
-          <h1 className="text-4xl font-medium mb-2">Welcome to Games</h1>
+          <h1 className="text-[40px] font-medium mb-2">Welcome to Games</h1>
           <p className="text-[12px]">
             Have fun with mini games that you don't need to download
           </p>
         </div>
-        <div className="flex gap-4 mt-5 mb-5 overflow-x-scroll">
+        <div className="flex sm:justify-center gap-4 mt-5 mb-5 overflow-auto">
           {[
             "All",
             "Action",
